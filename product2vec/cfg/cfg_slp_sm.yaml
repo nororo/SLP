@@ -1,0 +1,10 @@
+train:
+    data_name: dunnhumby
+    hidden_dim: 256
+    batch_size: 1024
+    n_neg: 20
+    max_epoch: 100
+    chunk_size: 10000000
+    progress_bar_interval: 500
+    save_model: True
+    patience: 5

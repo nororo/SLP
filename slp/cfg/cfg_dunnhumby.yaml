@@ -1,0 +1,26 @@
+train:
+    data_name: dunnhumby
+    hidden_size: 64
+    learning_rate: 2e-5
+    batch_size: 64
+    max_epoch: 100
+    chunk_size: 10000000
+    progress_bar_interval: 100
+    save_model: True
+    vocab_size: 1001
+    store_vocab_size: 111
+    time_vocab_size: 29
+    max_history_length: 10
+    max_context_items: 20
+inference:
+    chunk_size: 10000000
+    batch_size: 256
+    vocab_size: 1001
+    store_vocab_size: 111
+    time_vocab_size: 29
+    hidden_size: 64
+    num_attention_heads: 2
+    num_hidden_layers: 2
+    intermediate_size: 256
+    max_history_length: 10
+    max_context_items: 20

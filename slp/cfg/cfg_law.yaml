@@ -1,0 +1,28 @@
+train:
+    data_name: law
+    hidden_size: 64
+    learning_rate: 1e-4
+    batch_size: 128
+    max_epoch: 100
+    chunk_size: 10000000
+    progress_bar_interval: 2000
+    save_model: True
+    vocab_size: 2501
+    store_vocab_size: 15001
+    time_vocab_size: 29
+    max_history_length: 10
+    max_context_items: 20
+inference:
+    data_name: law
+    hidden_size: 64
+    learning_rate: 1e-4
+    batch_size: 128
+    max_epoch: 100
+    chunk_size: 10000000
+    progress_bar_interval: 2000
+    save_model: True
+    vocab_size: 2501
+    store_vocab_size: 15001
+    time_vocab_size: 29
+    max_history_length: 10
+    max_context_items: 20
