@@ -332,14 +332,19 @@ def main():
     df_transaction_data = get_transaction()
     data, item_frec_cnt_dict = preprocess_transaction(df_transaction_data)
 
-    data = data.query("tran_date <= 365")  # training data
-    print(data.shape)
+    print("all item_id: ", data.item_id.nunique())
+    print("max item_id: ", data.item_id.max())
+
+    data_train = data.query("tran_date <= 365")  # training data
+    print(data_train.shape)
+    print("train item_id: ", data_train.item_id.nunique())
+    print("train max item_id: ", data_train.item_id.max())  # 857
 
     print("=== proc_prod2vec_user ===")
     method_name = "prod2vec_user"
     (DATA_DIR / f"{method_name}").mkdir(parents=True, exist_ok=True)
     proc_cp_user(
-        data,
+        data_train,
         item_frec_cnt_dict,
         neg_sample_size=20,
         out_filename=DATA_DIR / f"{method_name}" / "proc_data_prod2vec_usr.parquet",
@@ -352,7 +357,7 @@ def main():
     method_name = "prod2vec_bsk"
     (DATA_DIR / f"{method_name}").mkdir(parents=True, exist_ok=True)
     proc_cp_basket(
-        data,
+        data_train,
         item_frec_cnt_dict,
         neg_sample_size=20,
         out_filename=DATA_DIR / f"{method_name}" / "proc_data_prod2vec_bsk.parquet",
@@ -364,7 +369,7 @@ def main():
     (DATA_DIR / f"{method_name}").mkdir(parents=True, exist_ok=True)
     print("=== proc_subst2vec ===")
     proc_slp_sop(
-        data,
+        data_train,
         item_frec_cnt_dict,
         out_filename=DATA_DIR / f"{method_name}" / "proc_data_subst2vec_sop.parquet",
     )
@@ -376,7 +381,7 @@ def main():
     method_name = "subst2vec_visit2vec_b64"
     (DATA_DIR / f"{method_name}").mkdir(parents=True, exist_ok=True)
     proc_slp_sm(
-        data,
+        data_train,
         item_frec_cnt_dict,
         out_filename=DATA_DIR
         / f"{method_name}"
